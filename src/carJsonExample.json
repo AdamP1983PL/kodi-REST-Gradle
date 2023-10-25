@@ -1,0 +1,25 @@
+{
+  "name": "Passat",
+  "brand": "VW",
+  "seats": [
+    {
+      "frontLeftSeat": {
+        "material": "leather",
+        "color": "black"
+      },
+      "frontRightSeat": {
+        "material": "leather",
+        "color": "black"
+      },
+      "rearLeftSeat": {
+        "material": "leather",
+        "color": "red"
+      },
+      "rear right seat": {
+        "material": "leather",
+        "color": "red"
+      }
+    }
+  ],
+  "engine size": "3.0"
+}
