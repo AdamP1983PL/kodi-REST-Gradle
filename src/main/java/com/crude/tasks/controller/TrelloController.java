@@ -4,6 +4,7 @@ import com.crude.tasks.client.TrelloClient;
 import com.crude.tasks.domain.CreatedTrelloCard;
 import com.crude.tasks.domain.TrelloBoardDto;
 import com.crude.tasks.domain.TrelloCardDto;
+import com.crude.tasks.service.TrelloService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,16 +17,16 @@ import java.util.List;
 @CrossOrigin("*")
 public class TrelloController {
 
-    private final TrelloClient trelloClient;
+    private final TrelloService trelloService;
 
     @GetMapping("boards")
     public ResponseEntity<List<TrelloBoardDto>> getTrelloBoards() {
-        return ResponseEntity.ok(trelloClient.getTrelloBoards());
+        return ResponseEntity.ok(trelloService.fetchTrelloBoards());
     }
 
     @PostMapping("cards")
     public ResponseEntity<CreatedTrelloCard> createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
-        return ResponseEntity.ok(trelloClient.createNewCard(trelloCardDto));
+        return ResponseEntity.ok(trelloService.createTrelloCard(trelloCardDto));
     }
 
 //    @GetMapping("boards")
