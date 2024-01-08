@@ -1,9 +1,6 @@
 package com.crude.tasks.trello.facade;
 
-import com.crude.tasks.domain.TrelloBoard;
-import com.crude.tasks.domain.TrelloBoardDto;
-import com.crude.tasks.domain.TrelloList;
-import com.crude.tasks.domain.TrelloListDto;
+import com.crude.tasks.domain.*;
 import com.crude.tasks.mapper.TrelloMapper;
 import com.crude.tasks.service.TrelloService;
 import com.crude.tasks.trello.validator.TrelloValidator;
@@ -94,8 +91,6 @@ class TrelloFacadeTest {
                 assertFalse(trelloListDto.isClosed());
             });
         });
-
     }
-
 
 }

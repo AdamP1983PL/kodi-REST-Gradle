@@ -1,5 +1,6 @@
 package com.crude.tasks.controller;
 
+
 import com.crude.tasks.domain.Task;
 import com.crude.tasks.domain.TaskDto;
 import com.crude.tasks.mapper.TaskMapper;
@@ -32,10 +33,13 @@ public class TaskController {
     }
 
     @GetMapping(value = "/re/{taskId}")
-    public ResponseEntity<TaskDto> getTaskRE(@PathVariable(name = "taskId") Long taskId) throws TaskNotFoundException {
-        return ResponseEntity.ok(taskMapper.mapToTaskDto(service.getTaskSecondMethod(taskId)));
+    public ResponseEntity<TaskDto> getTaskRE(@PathVariable(name = "taskId") Long taskId) {
+        try {
+            return ResponseEntity.ok(taskMapper.mapToTaskDto(service.getTaskSecondMethod(taskId)));
+        } catch (TaskNotFoundException ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
-
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createTask(@RequestBody TaskDto taskDto) {
