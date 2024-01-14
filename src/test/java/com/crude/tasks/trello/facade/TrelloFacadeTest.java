@@ -93,4 +93,34 @@ class TrelloFacadeTest {
         });
     }
 
+    @Test
+    void shouldCreateTrelloCard() {
+        // given
+        TrelloCard trelloCard = new TrelloCard("test_name", "test_description",
+                "test_pos", "test_listId");
+        TrelloCardDto trelloCardDto = new TrelloCardDto("test_name", "test_description",
+                "test_pos", "test_listId");
+
+        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
+                "test_id", "created_trello_card_test_name","test_shortUrl",
+                new TrelloBadgesDto(
+                        999, new AttachmentsByType(
+                                new Trello(20, 10))
+        ));
+        when(trelloMapper.mapToCard(trelloCardDto)).thenReturn(trelloCard);
+        when(trelloService.createTrelloCard(trelloMapper.mapToCardDto(trelloCard))).thenReturn(createdTrelloCardDto);
+
+        // when
+        CreatedTrelloCardDto createdCard = trelloFacade.createCard(trelloCardDto);
+
+        // then
+        assertNotNull(createdCard);
+        assertEquals("created_trello_card_test_name", createdCard.getName());
+        assertEquals("test_shortUrl", createdCard.getShortUrl());
+        assertEquals("test_id", createdCard.getId());
+        assertEquals(999, createdCard.getBadges().getVotes());
+        assertEquals(10, createdCard.getBadges().getAttachmentsByType().getTrello().getCard());
+        assertEquals(20, createdCard.getBadges().getAttachmentsByType().getTrello().getBoard());
+    }
+
 }

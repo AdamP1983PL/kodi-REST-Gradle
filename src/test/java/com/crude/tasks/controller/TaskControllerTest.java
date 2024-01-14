@@ -8,6 +8,9 @@ import com.crude.tasks.service.DbService;
 import com.google.gson.Gson;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -23,10 +26,12 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.willDoNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
 @SpringJUnitWebConfig
 @WebMvcTest(TaskController.class)
+@ExtendWith(MockitoExtension.class)
 class TaskControllerTest {
 
     @Autowired
@@ -105,6 +110,7 @@ class TaskControllerTest {
         // given
         Task task1 = new Task(1L, "title1", "content1");
         TaskDto taskDto1 = new TaskDto(1L, "titleDto1", "contentDto1");
+
         when(taskMapper.mapToTaskDto(task1)).thenReturn(taskDto1);
         when(dbService.getTaskSecondMethod(task1.getId())).thenThrow(TaskNotFoundException.class);
 
@@ -115,6 +121,7 @@ class TaskControllerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
+
 
     @Test
     void shouldCreateTrelloTask() throws Exception {
@@ -162,4 +169,5 @@ class TaskControllerTest {
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
+
 }

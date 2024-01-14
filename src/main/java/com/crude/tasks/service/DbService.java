@@ -37,7 +37,7 @@ public class DbService {
     }
 
     public Task getTaskSecondMethod(final Long taskId) throws TaskNotFoundException {
-        return repository.findOptionalById(taskId).orElseThrow(TaskNotFoundException::new);
+        return repository.findOptionalById(taskId).orElseThrow(() -> new TaskNotFoundException("There is no Task with id: " + taskId));
     }
 
     public void deleteById(final Long id) {
