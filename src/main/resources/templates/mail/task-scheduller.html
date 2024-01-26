@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Trello Card</title>
     <style>
+
         @media only screen and (max-width: 620px) {
             table[class=body] h1 {
                 font-size: 28px !important;
@@ -118,57 +119,29 @@
 
                                         <p th:if="${is_friend}"
                                            style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                                            Yooo <span th:text="${admin_name}"></span>,</p>
+                                            Yooo <span th:text="${admin_name}"></span>,
+                                        </p>
                                         <p th:unless="${is_friend}"
                                            style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
-                                            Dear <span th:text="${admin_name}"></span>,</p>
-
-                                        <p th:text="${welcome_message}"
-                                           style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;"></p>
-                                        <p th:text="${message}"
-                                           style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;"></p>
-
-                                        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary"
-                                               style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
-                                            <tbody>
-                                            <tr>
-                                                <td align="left"
-                                                    style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;">
-
-                                                    <table th:if="${show_button}" border="0" cellpadding="0"
-                                                           cellspacing="0"
-                                                           style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-
-                                                        <tbody>
-                                                        <tr>
-                                                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: #3498db; border-radius: 5px; text-align: center;">
-
-                                                                <a th:href="${tasks_url}" th:text="${button}"
-                                                                   target="_blank"
-                                                                   style="display: inline-block; color: #ffffff; background-color: #3498db; border: solid 1px #3498db;
-                                                                border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold;
-                                                                margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: #3498db;"></a>
-                                                            </td>
-
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0 0 15px;">
-                                            Application functionality
+                                            Dear <span th:text="${admin_name}"></span>,
                                         </p>
-                                        <ul th:each="function : ${application_functionality}">
-                                            <li th:text="${function}"></li>
-                                        </ul>
-
+                                        <p th:text="${welcome_message}"
+                                           style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">
+                                        </p>
+                                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;"
+                                           th:text="${daily_message}">
+                                        </p>
+                                        <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;"
+                                           th:text="${tasks_number}">
+                                        </p>
                                         <p th:text="${goodbye_message}"
-                                           style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px; color: #999999"></p>
+                                           style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px; color: #999999">
+                                        </p>
+
                                     </td>
                                 </tr>
                             </table>
+
                         </td>
                     </tr>
 
@@ -176,7 +149,8 @@
                 </table>
 
                 <!-- START FOOTER -->
-                <div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;">
+                <div class="footer"
+                     style="clear: both; Margin-top: 10px; text-align: center; width: 100%;">
                     <table border="0" cellpadding="0" cellspacing="0"
                            style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
                         <tr>
