@@ -3,7 +3,6 @@ package com.crude.tasks.controller;
 import com.crude.tasks.domain.CreatedTrelloCardDto;
 import com.crude.tasks.domain.TrelloBoardDto;
 import com.crude.tasks.domain.TrelloCardDto;
-import com.crude.tasks.service.TrelloService;
 import com.crude.tasks.trello.facade.TrelloFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -28,5 +27,4 @@ public class TrelloController {
     public ResponseEntity<CreatedTrelloCardDto> createTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {
         return ResponseEntity.ok(trelloFacade.createCard(trelloCardDto));
     }
-
 }
